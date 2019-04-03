@@ -1,0 +1,177 @@
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[11pt,fleqn]{book} % Default font size and left-justified equations
+\usepackage[export]{adjustbox}
+\usepackage[table,xcdraw]{xcolor}
+
+\usepackage[top=3cm,bottom=3cm,left=3.2cm,right=3.2cm,headsep=10pt,letterpaper]{geometry} % Page margins
+
+\usepackage{xcolor} % Required for specifying colors by name
+\definecolor{ocre}{RGB}{52,177,201} % Define the orange color used for highlighting throughout the book
+
+% Font Settings
+\usepackage{avant} % Use the Avantgarde font for headings
+%\usepackage{times} % Use the Times font for headings
+\usepackage{mathptmx} % Use the Adobe Times Roman as the default text font together with math symbols from the Sym­bol, Chancery and Com­puter Modern fonts
+
+\usepackage{microtype} % Slightly tweak font spacing for aesthetics
+\usepackage[utf8]{inputenc} % Required for including letters with accents
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{mathdots}
+\usepackage{yhmath}
+\usepackage{cancel}
+\usepackage{color}
+\usepackage{siunitx}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usetikzlibrary{fadings}
+\usepackage[section]{placeins}
+
+% % Bibliography
+% \usepackage[style=alphabetic,sorting=nyt,sortcites=true,autopunct=true,babel=hyphen,hyperref=true,abbreviate=false,backref=true,backend=biber]{biblatex}
+% \defbibheading{bibempty}{}
+\usepackage[style=authoryear-ibid,backend=biber,alphabetic,sorting=nyt,]{biblatex}
+\addbibresource{bibliography.bib} % BibTeX bibliography file
+
+\input{structure} % Insert the commands.tex file which contains the majority of the structure behind the template
+\let\cleardoublepage\clearpage
+\makeatletter
+\newcommand{\tocfill}{\cleaders\hbox{$\m@th \mkern\@dotsep mu . \mkern\@dotsep mu$}\hfill}
+\makeatother
+\newcommand{\abbrlabel}[1]{\makebox[3cm][l]{\textbf{#1}\ \tocfill}}
+\newenvironment{abbreviations}{\begin{list}{}{\renewcommand{\makelabel}{\abbrlabel}%
+                                              \setlength{\itemsep}{0pt}}}{\end{list}}
+\begin{document}
+\title{THESIS}
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\begingroup
+\thispagestyle{empty}
+\AddToShipoutPicture*{\put(0,0){\includegraphics[scale=1.2]{Pictures/Cover.png}}} % Image background
+\centering
+\vspace*{2cm}
+\par\normalfont\fontsize{28}{28}\sffamily\selectfont
+\textbf{ Valuation Strategies for Utility Energy Battery Storage in the NEM }\\
+\vspace*{0.5cm}
+{\Large School of Photovoltaic and Renewable Energy Engineering   Faculty of Engineering | 
+The University of New South Wales}\par % Book title
+\vspace*{0.5cm}
+{\LARGE Henry Blumentals }\par % Author name
+\endgroup
+%-------------------------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage 
+
+\thispagestyle{empty} 
+{\noindent 
+\textbf{UNIVERSITY OF NEW SOUTH WALES} \\
+Faculty of Engineering \\   
+School of Photovoltaics \& Renewable Energy Engineering \\  
+
+\begin{center}
+   \LARGE{\textbf{UNDERGRADUATE THESIS}} 
+\end{center}
+
+ }
+\noindent
+
+
+\begin{tabbing}
+\textbf{Supervisor:} \quad \quad \quad \qquad \= Dr. Anna Bruce,\\ % MODIFY!
+\>{\small School of Photovoltaics \& Renewable Energy Engineering} \\ % institute goes here
+\>{\small University of New South Wales} \\ % uni. and country
+\>{\small Sydney, Australia} \\ % uni. and country
+\\
+\textbf{Co-supervisor:} 
+\> A. Prof. Iain MacGill,\\ % MODIFY!
+\>{\small Centre for Energy \& Environmental Markets} \\ % MODIFY!
+\>{\small University of New South Wales} \\ % uni. and country
+\>{\small Sydney, Australia} \\ % uni. and country
+\\
+\textbf{Industry  Supervisor:} 
+\> Mr. Merrick Underwood \\ % MODIFY!
+\>{\small Manager Energy Market Analytics} \\ % MODIFY!
+\>{\small Infigen Energy} \\ % uni. and country
+\>{\small Sydney, Australia} \\ % uni. and country
+\\
+\textbf{Project Collaborator:} 
+\> Mr. Daniel Tam \\ % MODIFY!
+\>{\small Undergraduate Photovoltaic Engineer \& Computer Scientist } \\ % MODIFY!
+\>{\small University of New South Wales } \\ % uni. and country
+\>{\small Sydney, Australia} \\ % uni. and country
+\\
+\textbf{Assessors:} 
+\> Dr. Anna Bruce, \\ % MODIFY!
+\> A. Prof. Iain Macgill.\\ % MODIFY!
+\end{tabbing}
+
+\noindent
+\textbf{Submitted by:} Henry William Desmond Blumentals, z5059913 \\
+\textbf{Submitted on:} X June \Year, Sydney \\ % MODIFY!
+
+\noindent
+
+\begin{tabbing}
+\AuthorName \= $\rule{5cm}{0.15mm}$\\
+\> \hspace*{1.5cm} {\footnotesize signature} \\ %\hspace*{\fill} 
+\end{tabbing}
+\hspace{3mm}
+
+\begin{tikzpicture}[remember picture, overlay]
+  \node [anchor=north east, inner sep=30pt]  at (current page.north east)
+     {\includegraphics[width=30mm]{Pictures/unsw_logo.png}};
+\end{tikzpicture}
+
+\clearpage
+\thispagestyle{empty}
+
+
+%--------------------------------------------
+\chapter*{Abstract}
+\chapter*{Acknowledgements}
+\chapter*{Abbreviations}
+\par\vspace*{-190\p}
+\begin{abbreviations}
+\item[NEM] National Electricty Market
+\item[BESS] Battery Energy Storage System
+\item[PV] Photovoltaic
+\item[NEMDE] National Electricity Market Dispatch Engine
+\end{abbreviations}
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+\chapterimage{neoen.png} % Table of contents heading image
+
+\pagestyle{empty} % No headers
+
+\tableofcontents % Print the table of contents itself
+
+%\cleardoublepage % Forces the first chapter to start on an odd page so it's on the right
+
+\pagestyle{fancy} % Print headers again
+
+%----------------------------------------------------------------------------------------
+\include{chapter1}
+\include{chapter2}
+\include{chapter3}
+\include{chapter4}
+\include{chapter5}
+\include{chapter6}
+\include{chapter7}
+
+\chapter*{References}
+\printbibliography[heading=none]
+
+ 
+\end{document}
