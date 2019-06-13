@@ -134,6 +134,7 @@ Below Figure \ref{fig:throughput_limit} shows the impact of applying a 365 cycle
     \label{fig:throughput_limit}
 \end{figure}
 \subsection{ Recent Trends and Driving Factors for Energy Arbitrage Revenue }
+\label{sec:trends}
 Figure \ref{fig:wang_plot_full} extends Figure \ref{fig:wang_ea_comparion} and shows the energy arbitrage revenue with perfect foresight, for a 1MW BESS including the calendar years (15,16,17,18). 
 \begin{figure}[H]
     \centering
@@ -162,3 +163,60 @@ wholesale prices"}. This aligns with Figure \ref{fig:wang_plot_full} as QLD 2018
 price by state for 12 January 2017 (Wood, 2018)}
     \label{fig:generator_gaming_1}
 \end{figure}
+\section{ Performance under a Changing Generation Mix}
+Section \ref{sec:trends} highlights the historic trends and emphasises that South Australia is the best performing state for energy arbitrage in the NEM. South Australia has undergone rapid energy transformation over the past 10 years, with exit of coal generators in 2016 \parencite{sa_coal}, uptake of variable renewable energy resources and an increase of behind-the-meter household photovoltaics (PV). AEMO estimates behind-the-meter PV in South Australia currently accounts for 930MW. Additionally, AEMO cites this rapid uptake in behind-the-meter PV combined with energy efficiency savings, kept annual operational consumption in South Australia flat at 12,203 GWh in 2017-18, despite underlying population growth. 
+\newline
+\newline
+AEMO now forecasts minimum operational demand in South Australia because low operational demand introduces operational challenges for balancing the power system. Since 2012-13, annual minimum demand has decreased as rooftop PV capacity increased. Furthermore, AEMO forecasts negative minimum demand for the region under certain conditions by 2023-24. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Pictures/Chapter3/minimum_demand.png}
+    \caption{Caption}
+    \label{fig:minimum_demand}
+\end{figure}
+As of July 2017, \textcite{sa_aemo} calculated the nameplate capacity of committed capacity new build utility Solar PV in South Australia as 218 MW; Bungala Two (110 MW) and Tailem Bend Solar Farm (108 MW). However, AEMO also acknowledge an additional 2387.5 MW of Solar PV proposed for the state. Structurally this will have a profound impact of prices during the day exacerbating and already pronounced `duck curve' \footnote{In many energy markets the peak demand occurs after sunset, when solar power is no longer available. In locations where a substantial amount of solar electric capacity has been installed, the amount of power that must be generated from sources other than solar or wind displays a rapid increase around sunset and peaks in the mid-evening hours, producing a graph that resembles the silhouette of a duck}. The following methodology has been undertaken to explore the possible impact that significant additional utility PV will have on South Australia. This method is limited to a narrow scope of additional Solar PV and does not take into account increased investment in Wind, thermal generation technologies or uptake in energy efficiency. Additionally, increased demand in the state or exploration of exploration of the proposed SA - NSW interconnector has not been investigated. 
+\subsection{ Methodology }
+The following steps were undertaken to build 3 scenarios of 30 minute spot prices for South Australia in 2020; a) Business as Usual with no Solar (counterfactual), b) South Australia with an additional 500 MW of Solar c) South Australia with an additional 1000 MW of Solar.
+\newline
+\textit{Due to commercial confidentiality, this method has been simplified.}
+\begin{enumerate}
+    \item Random sample (bootstrap) 100 years from 2011-2018 based on month/day-type to construct 100 simulated years of South Australian spot price. 
+    \item Re-base the simulated prices such that the average spot price by quarter equals the flat quarterly spot price traded on the ASX spot market for 2020 (As of 04/04/2019).
+    \item Generate a single axis PV MW trace by half-hour using NREL's SAM. The location used in the weather file was Port-Augusta.
+    \item Generate a regression based on residual demand. The AEMO MMS table was DISPATCHREGIONSOLATION. The regression was based on (totaldemand - semi-scheduled) vs average historic quarterly price. Ultimately this represents a bid stack, and highlights the impact on increasing demand for fossil fuel generators and the impact on price.  Figure \ref{fig:regression} shows the relation for each quarter. As the plot highlights, for each quarter beyond 2000 MW of residual or fossil-fuel demand, South Australia's price quite rapidly tends towards ceiling price, and caps at VoLL around 3000 MW.
+    \item Build a counterfactual price trace using the regression model. This involves gathering the 100 simulations of price from the bootstrap set and for each price determine the original price $RRP_1$ (\$/MWh), residual demand $RD_{1}$ (MW), and mean quarterly price for the simulation $QTR_{RRP}$ (\$/MWh).
+    The counterfactual price using the residual demand model is given by: 
+    \begin{equation}
+        RRP_2 = RRP_1 \times \dfrac{MMP_{RD_1}}{MMP_1}
+    \end{equation}
+    Where $MMP_1$ is the Mean Price Percentage of the original price traces i.e. $100 \times \dfrac{RRP_1}{QTR_{RRP}}$.
+    \item To simulate an increase in Solar, we adjust the original residual demand by a the 1MW Solar Trace $S$ multiplied by the MW quantity we require; $RD_{Solar} = RD_1 - N \times S $. We can then find the spot price under additional solar $RRP_S$; 
+        \begin{equation}
+        RRP_{S} = RRP_1 \times \dfrac{MMP_{RD_S}}{MMP_1}
+    \end{equation}
+    \item This model was then deployed using 500MW and 1000MW of PV. Figures \ref{fig:bess_w_low_solar} and \ref{fig:bess_w_high_solar} show the impact of the average diurnal price in South Australia using this Solar PV adjustment. As the Figures highlight, additional PV impact peak demand in Q1 and Q4 but doesn't make material difference to the afternoon/evening peak during the winter quarters.  
+\end{enumerate}
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{    \includegraphics[width=1.15\textwidth]{"Pictures/Chapter6/diurnal_profile_low_solar".pdf}}
+    \caption{2020 Re-based SA Price Diurnal Profiles with 500MW MW additional solar PV.}
+    \label{fig:bess_w_low_solar}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{    \includegraphics[width=1.15\textwidth]{"Pictures/Chapter6/diurnal_profile_high_solar".pdf}}
+    \caption{2020 Re-based SA Price Diurnal Profiles with 1000 MW additional solar PV.}
+    \label{fig:bess_w_high_solar}
+\end{figure}
+\section{ Analysis }
+Figure \ref{fig:bess_w_solar} shows the annual revenue assuming perfect foresight for a 30MW/119MWh BESS under; the 2020 counterfactual scenario, additional 500MW solar scenario and  an additional 1000MW. 30MW/119MWh was chosen as it represents the merchant capactiy of the Hornsdale Power Reserve discussed in Section \ref{hornsdale}.
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{    \includegraphics[width=\textwidth]{"Pictures/Chapter6/bess_w_solar".pdf}}
+    \caption{30MW/119MW BESS energy arbitrage revenue under 2020 BAU, low and high solar.}
+    \label{fig:bess_w_solar}
+\end{figure}
+From Figure \ref{fig:bess_w_solar} an increase in solar clearly degrades the overall arbitrage by up to 20\% in the 1000 MW scenario. Although additional Solar increases the prevalence of negative pricing during the day, which enables more lucrative and flexible charging regimes, overall demand drive price spikes reduce in magnitude hence reducing overall revenue.
+\newline
+\newline
+This method is only a simple representation of a complex market which is characterised from many physical and economic factors, however this purpose of this section is to illustrate that a evolving generation mix will affect BESS arbitrage revenue, especially in areas where variable intermittent set the marginal clearing price. To explore this in more detail a bottom up approach would offer more insights. In 2018, AEMO released the inaugural Integrated System Plan (ISP) – a comprehensive evaluation of the likely changes that will be occurring over the next 20 years across the National Electricity Market (NEM). Accompanying the ISP is a database which provides a methodology for simulating the NEM over the next 20 years: \url{https://www.aemo.com.au/Electricity/National-Electricity-Market-NEM/Planning-and-forecasting/Integrated-System-Plan/ISP-database}. 

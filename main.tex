@@ -35,6 +35,8 @@
 \usepackage[section]{placeins}
 \usepackage{wrapfig}
 \usepackage{float}
+\usepackage{algorithm, setspace}
+\usepackage[noend]{algpseudocode}
 
 % % Bibliography
 % \usepackage[style=alphabetic,sorting=nyt,sortcites=true,autopunct=true,babel=hyphen,hyperref=true,abbreviate=false,backref=true,backend=biber]{biblatex}
@@ -61,14 +63,15 @@
 \thispagestyle{empty}
 \AddToShipoutPicture*{\put(0,0){\includegraphics[scale=1.2]{Pictures/Cover.png}}} % Image background
 \centering
-\vspace*{2cm}
+\vspace*{2.5cm}
 \par\normalfont\fontsize{28}{28}\sffamily\selectfont
 \textbf{ Valuation Strategies for Utility Energy Battery Storage in the NEM }\\
 \vspace*{0.5cm}
-{\Large School of Photovoltaic and Renewable Energy Engineering   Faculty of Engineering | 
-The University of New South Wales}\par % Book title
+{\Large Henry Blumentals }\par 
+{\Large Bachelor of Engineering in Renewable Energy Engineering}\par 
+{\Large Course Code: SOLA4910/4911}\par
+{\Large Submission Date: 15th June 2019}\par
 \vspace*{0.5cm}
-{\LARGE Henry Blumentals }\par % Author name
 \endgroup
 %-------------------------------------------
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -86,7 +89,6 @@ School of Photovoltaics \& Renewable Energy Engineering \\
 
  }
 \noindent
-
 
 \begin{tabbing}
 \textbf{Supervisor:} \quad \quad \quad \qquad \= Dr. Anna Bruce,\\ % MODIFY!
@@ -117,17 +119,10 @@ School of Photovoltaics \& Renewable Energy Engineering \\
 \> A. Prof. Iain Macgill.\\ % MODIFY!
 \end{tabbing}
 
-\noindent
-\textbf{Submitted by:} Henry William Desmond Blumentals, z5059913 \\
-\textbf{Submitted on:} 15 June \Year, Sydney \\ % MODIFY!
-
-\noindent
-
-\begin{tabbing}
-\AuthorName \= $\rule{5cm}{0.15mm}$\\
-\> \hspace*{1.5cm} {\footnotesize signature} \\ %\hspace*{\fill} 
-\end{tabbing}
-\hspace{3mm}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Pictures/declaration.PNG}
+\end{figure}
 
 \begin{tikzpicture}[remember picture, overlay]
   \node [anchor=north east, inner sep=30pt]  at (current page.north east)
@@ -142,7 +137,6 @@ School of Photovoltaics \& Renewable Energy Engineering \\
 \chapter*{Abstract}
 \chapter*{Acknowledgements}
 \chapter*{Abbreviations}
-\par\vspace*{-190\p}
 \begin{abbreviations}
 \item[NEM] National Electricty Market
 \item[BESS] Battery Energy Storage System
@@ -158,6 +152,7 @@ School of Photovoltaics \& Renewable Energy Engineering \\
 \pagestyle{empty} % No headers
 
 \tableofcontents % Print the table of contents itself
+\listoffigures
 
 %\cleardoublepage % Forces the first chapter to start on an odd page so it's on the right
 
@@ -173,9 +168,12 @@ School of Photovoltaics \& Renewable Energy Engineering \\
 \include{chapter3}
 \chapterimage{grid_storage.png} %able of
 \include{chapter4}
+\chapterimage{Chapter5/stocksbanner.jpg} % Table
 \include{chapter5}
 \chapterimage{Chapter6/solar.jpg} % Table of
 \include{chapter6}
+\chapterimage{infigen_pic.jpg} % Table of
+\chapterimageheight{180}
 \include{chapter7}
 \chapter*{References}
 \printbibliography[heading=none]
@@ -184,5 +182,12 @@ School of Photovoltaics \& Renewable Energy Engineering \\
 \chapterimageheight{10}
 \chapter{ P30 Predispatch Accuracy}
 \input{predispatch_accuracy.tex}
+\chapter{ South Australia Residual Demand Regression}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Pictures/sa_regression.png}
+    \caption{Regression of Price vs Percentage of Historic Mean Price (2015-2019)}
+    \label{fig:regression}
+\end{figure}
  
 \end{document}
