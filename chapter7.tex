@@ -1,9 +1,19 @@
 \chapter{Conclusion and Future Work}
 \section{Conclusion}
+Overall this thesis highlighted a number of key findings;
+\begin{enumerate}
+    \item Highlighted in Chapter \ref{sec:energy_arbitrage}, various operating trends for BESS operation we explored. These include, but aren't limited to; seasonal impact on BESS operating regimes, dependency on high price events, illustrating that throughput constraints of 365 cycles per annum make immaterial difference to revenue, and also that 2 hours of storage appears ideal selection for storage capacity. 
+    \item Outlined in Chapter \ref{sec:imperfect_foresight}, there has been a NEM-wide increase in energy arbitrage value. Despite the challenges in forecasting and the degradation in the P30 predispatch forecast, BESS revenue with imperfect foresight is also increasing. Despite these increases, this analysis suggests that utility storage isn't economical based on energy arbitrage revenue only.
+    \item As seen in Figure \ref{fig:generator_gaming}, the relationship between BESS revenue in QLD and the value of generator gaming in the state was an interesting finding. This finding reinforces the importance to shift towards 5 settlement as generator rebidding under 30 minute trading prices can have a significant impact on price volatility. 
+    \item Explored in Section \ref{generation_mix}, an assessment of BESS arbitrage revenue was performed in South Australia under an additional 500MW and 1000MW of Solar PV. 
+    Increase in PV may cause revenue degradation.
+    \item 
+    Bid model increases revenue relative to an automated dispatch process from McConnell/Wang.
+    \item Linear Programming using Monte Carlo sampling can be used to capture an upper bound for co-optimised energy revenue.  
+\end{enumerate}
 \section{Future Work}
 \subsection{Co-optimisation Across Regulation and Contingency FCAS}
 Section \ref{sec:coop_method} explored the co-optimisation of energy and regulation participation, however did not encompass all 9 NEM markets, that is, inclusion of the contingency markets. Although contingency payments events occur rarely, and as such don't dictate BESS dispatch directly, any generator providing contingency must have sufficient headroom and capacity in order to provide the service. Furthermore, the FCAS enablement payments are also dependent on the droop setting of the BESS in addition to the required frequency response \parencite{AEMO_Droop}.
-
 \subsection{Optimising Strategic Bidding Bands}
 
 \subsection{Removal of the Price-taker Assumption}

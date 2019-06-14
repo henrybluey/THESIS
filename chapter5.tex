@@ -9,7 +9,7 @@ Figure \ref{fig:bidding_nem} explains the bidding process in simple terms, where
 \end{figure}
 \section{ A `crude' bidding approach}
 \label{sec:crude}
-This section heavily relies on the work of Daniel Tam (co-author), and explores a simple bidding methodology which is to capture the price differential between 2 fixed thresholds. Conceptually this is similar to the bidding process in the NEM, however this `crude' methodology implies only once price band is set for each DUID. In practice the 10 price bid bands can be reset each day at 12:00pm, but the results below only use a static pair of upper (U) and lower (L) price thresholds.
+This `crude' algorithm heavily relies on the work of Daniel Tam (co-author), and explores a simple bidding methodology which is to capture the price differential between 2 fixed thresholds. Conceptually this is similar to the bidding process in the NEM, however this `crude' methodology implies only once price band is set for each DUID. In practice the 10 price bid bands can be reset each day at 12:00pm, but the results below only use a static pair of upper (U) and lower (L) price thresholds.
 \subsection{Methodology}
 Below Algorithm \ref{alg:crude} shows the dynamic procedure to dispatch the BESS under a crude bidding methodology.
 \begin{algorithm}
@@ -68,7 +68,7 @@ In total the BESS made \$14,387.00 in this period, whilst the optimal perfect fo
 South Australia, 2018}
     \label{fig:crude_thresholds}
 \end{figure}
-Figure \ref{fig:crude_thresholds} highlights that the ideal thresholds are charging below \$140 and greater than \$180MWh capturing approximately \$560k or 24.4\% of the \$2.292m  optimal revenue for the same scenario. Additionally it's clear that if $L>U$ then no revenue is achievable - this is logical. 
+Figure \ref{fig:crude_thresholds} highlights that the ideal thresholds are charging below \$140/MWh and greater than \$180/MWh capturing approximately \$560k or 24.4\% of the \$2.292m  optimal revenue for the same scenario. Additionally it's clear that if $L>U$ then no revenue is achievable - this is logical. 
 \section{Strategic Bidding Model using Linear Programming}
 As explored in Section \ref{sec:crude}, the crude algorithm offers a simple operating strategy aligned with the bidding requirements in the NEM. However, the key limitation of the crude methodology is that the price bid bands are entirely static. 
 
@@ -124,9 +124,9 @@ This method has the limitation that only one quantity is assigned into a bid ban
 Figure \ref{fig:strategic_bidding}  highlights the result of this strategic bidding methodology for a 1MW/2MWh BESS in South Australia in 2018. As the Figure highlights this methodology of using Linear Programming on a combined forecast yields 16\% greater revenue than the `crude' algorithm presented in Section \ref{sec:crude}. \textbf{ Overall this algorithm captures 57\% of the optimal `perfect foresight' revenue. }
 \begin{figure}[H]
     \centering
-    \makebox[\textwidth][c]{    \includegraphics[width=\textwidth]{"Pictures/Chapter5/Strategic_Bidding".pdf}}
+    \makebox[\textwidth][c]{    \includegraphics[width=\textwidth]{"Pictures/Chapter5/strategic_bidding_outcomes".pdf}}
     \caption{Caption}
     \label{fig:strategic_bidding}
 \end{figure}
-As mentioned in Section \ref{sec:ifn}, Infigen Energy have invested in a \$38 million BESS project, including \$10 million in state and federal funding, for a 25MW/52MWh Battery in South Australia. As shown in Figure \ref{fig:strategic_bidding}, we can conservatively estimate for energy abritrage revenue for a 2 hour storage BESS is \$100,000/MW. Hence, for the Lake Bonney BESS, a very simple calculation based on Figure \ref{fig:strategic_bidding} would suggest the LB BESS could generate \$25 million over a 10 year period \footnote{Assuming the Battery has a performance warranty of 10 years (similar to the power wall \url{https://www.tesla.com/sites/default/files/pdfs/powerwall/Powerwall_2_AC_Warranty_AUS-NZ_1-0.pdf})}. This is excluding battery performance degradation, operational costs, significant variation in price dynamics or discounting cash flows. As such, it is clear that BESS projects are still non-financial based on energy arbitrage revenue alone. Section \ref{sec:co-otimisation} explores additional revenue streams which battery storage can access via FCAS participation. 
+As mentioned in Section \ref{sec:ifn}, Infigen Energy have invested in a \$38 million BESS project, including \$10 million in state and federal funding, for a 25MW/52MWh Battery in South Australia. As shown in Figure \ref{fig:strategic_bidding}, we can conservatively estimate for energy abritrage revenue for a 2 hour storage BESS is \$100,000/MW. Hence, for the Lake Bonney BESS, a very simple calculation based on Figure \ref{fig:strategic_bidding} would suggest the LB BESS could generate \$25 million over a 10 year period \footnote{Assuming the Battery has a performance warranty of 10 years (similar to the power wall \url{https://www.tesla.com/sites/default/files/pdfs/powerwall/Powerwall_2_AC_Warranty_AUS-NZ_1-0.pdf})}. This is excluding battery performance degradation, operational costs, significant variation in price dynamics or discounting cash flows. As such, it is clear that BESS projects are still non-financial based on energy arbitrage revenue alone. Section \ref{sec:coop_method} explores additional revenue streams which battery storage can access via FCAS participation. 
 

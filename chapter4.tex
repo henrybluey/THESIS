@@ -1,4 +1,5 @@
 \chapter{ Energy Arbitrage, Imperfect Foresight }
+\label{sec:imperfect_foresight}
 \begin{wrapfigure}{r}{0.5\textwidth}
     \begin{center}
     \centering
@@ -7,7 +8,7 @@
     \caption{Pre-dispatch forecast accuracy. Periods ahead of forecast vs. absolute price difference, South Australia 2014 (McConnell 2014)}
     \label{fig:mcconnell_predispatch_accuracy}
 \end{wrapfigure}
-Although Chapter 3 highlights the dynamics of battery energy storage, the results are theoretical and only place an \textbf{upper-bound} on energy arbitrage revenue. A  variety of approaches have been proposed for incorporating
+Although Chapter \ref{sec:energy_arbitrage} highlights the dynamics of battery energy storage, the results are theoretical and only place an \textbf{upper-bound} on energy arbitrage revenue. A  variety of approaches have been proposed for incorporating
 imperfect foresight in electricity markets. \parencite{Sioshansi} used a ‘back casting’ approach, based on historic prices for the previous two weeks. \parencite{Wang} employed a `dynamic control algorithm' based on the following 24 hr ahead NEM pre-dispatch price forecasts (P30). \parencite{Wang} captured 60-85\% of the perfect foresight results for different states in the NEM in 2010, and noticed that it dropped to 20-50\% of the perfect foresight revenue in 2013. As previously highlighted in Figure \ref{fig:mcconnel_2014}, McConnell similarly used predispatch forecast prices, and using data from South Australia (2013-2014) found that increasing the storage improves the realisation of potential arbitrage value, from 70\% at 3 h to over 90\% at 8h. McConnell argues that this arises due to increased flexibility of the storage device. The ability to re-evaluate and change operation may be constrained for smaller devices.
 \section{ AEMO Predispatch Forecast Accuracy }
 \subsection{ P30 Predispatch Forecast  }
@@ -79,7 +80,7 @@ Below Figure \ref{fig:2014_imperfect_mcconncel} shows the revenue captured by en
 \end{figure}}
 \subsection{Discussion}
 \subsubsection{NSW}
-New South Wales has exhibited an enormous increase in opportunity in BESS revenue. From 2013 to 2018, imperfect foresight BESS revenue has almost increased by \textbf{3 times}. The jump in revenue occurred in 2015, as highlighted by \parencite{AECOM}, the privatisation of state owned generation businesses was completed in 2015. As a result,
+New South Wales has exhibited an enormous increase in opportunity in BESS revenue. From 2013 to 2018, imperfect foresight BESS revenue has almost increased by \textbf{3 times}. The jump in revenue occurred in 2015, likely due to the privatisation of state owned generation businesses was completed in 2015 \parencite{AECOM}. As a result,
 private entities own most generation capacity in NSW. AGL Energy (29 per cent), Origin Energy (23 per cent) and Snowy Hydro (19 per cent)
 emerged as the state’s leading generators.
 \subsubsection{Queensland}
@@ -92,10 +93,10 @@ Victoria, naturally exhibits a cross between the characteristics of NSW and SA. 
     \begin{center}
     \centering
     \includegraphics[width=0.6\textwidth]{Pictures/Chapter4/basslink.png}
-    \label{fig:basslink}
+    \label{fig:basslink_actual}
     \caption{Factors contributing to differences between Dispatch and Pre-dispatch outcomes: Basslink Interconnector (AEMO, 2018)}
     \end{center}
 \end{wrapfigure}
 \subsubsection{Tasmania}
 Last and definitely least, Tasmania is a catastrophic state for battery storage using the P30 forecast. As shown in Figure A.5 South Australia has a tendency to over forecast price, consistently with a high degree of error. As highlighted by (AEMC, 2018), in Tasmania, rebidding is 65\% of the price spike cost. Furthermore, rebidding costs have increased by
-165\% since 2015. Furthermore, AEMO recognises that there are issues surrounding constraint accuracy in the P30 forecast, affecting the P30 price forecast for Tasmania. A detailed explanation of this issue is provided in Figure \ref{fig:basslink}.
+165\% since 2015. Additionally, AEMO recognises that there are issues surrounding constraint accuracy in the P30 forecast, affecting the P30 price forecast for Tasmania. A detailed explanation of this issue is provided in Figure \ref{fig:basslink_actual}.

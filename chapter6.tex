@@ -87,26 +87,36 @@ Figure \ref{fig:agc_energy} highlights that regulation raise is instructed via t
 \subsubsection{Perfect Enablement}
 In the NEM, 130 MW is procured for raise FCAS services while 120 MW is procured for FCAS lower services within a 5-minute dispatch interval. An accumulated time error of greater than ± 1.5 s may require additional regulation support of an extra 60 MW/s deviation for mainland. However, the linear program presented  in  Section  \ref{sec:coop_method},  assumes  the  BESS  as  an  FCAS  price-taker,  or  that  it  can  be  enabled  up  to its regulation availability at any point in time for the given price (perfect enablement). When dealing with energy arbitrage with small market price-taker assumption is generally accepted given the maximum demand typically sits around 3000MW, and minimum demand is close to 600MW \parencite{sa_aemo}. However given the size of the regulation markets, there are significant issues that arise if you maintain the price taker assumption. 
 
-The results of the linear program for a 30MW/119MWh BESS in SA in 2018 are presented in Figure 5.3.  In this case we see regulation raise as the dominant revenue stream.  Interestingly,  the BESS energy setpoint alone (ie.what the battery is dispatched to provide in the energy market) would have provided negative revenue if dispatched in an energy only scenario.  Instead, the algorithm exploits the fact that revenue from the energy market is settledbased on metered actual values as opposed to energy setpoints.  Hence it positions itself to collect energy paytmentsfrom the net BESS output level determined by the superposition of the energy setpoint and the regulation AGCsignal.
+The results of the linear program for a 30MW/119MWh BESS in SA in 2018 are presented in Figure \ref{fig:perfectenablement}.  In this case we see regulation raise as the dominant revenue stream.  Interestingly,  the BESS energy set-point alone would have provided negative revenue if dispatched in an energy only scenario.  Instead, the algorithm exploits the fact that revenue from the energy market is settled based on metered actual values as opposed to energy set-points.  Hence it positions itself to collect energy payments from the net BESS output level determined by the superposition of the energy set-point and the regulation AGC signal.
 
 \begin{figure}[H]
     \centering
     \makebox[\textwidth][c]{    \includegraphics[width=\textwidth]{"Pictures/Chapter6/monthly_perfectenablement".pdf}}
-    \caption{Caption}
-    \label{fig:my_label}
+    \caption{Perfect  Enablement  Energy  \&  FCAS  Revenue  for  a  30MW/119 MWh  Battery  -  South Australia 2018}
+    \label{fig:perfectenablement}
 \end{figure}
-
+Below Figure \ref{fig:energyonly_vs_perfectenablement} highlights the comparison of energy only revenue vs co-optimised revenue by month. Interestingly in July co-optimised revenue soars above the energy only revenue. This was largely attributable to high price events on the 8 July 2018 where the dispatch price for lower and raise regulation services in
+South Australia exceeded \$5000/MW 25 and 28 times respectively.
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{    \includegraphics[width=\textwidth]{"Pictures/Chapter6/energyonly_vs_perfectenablement".pdf}}
+    \caption{2018 Energy Only vs Co-optimised Regulation Participation Revenue by Month.}
+    \label{fig:energyonly_vs_perfectenablement}
+\end{figure}
+\subsection{Limiting Regulation Capacity with Perfect Enablement}
+As highlighted above, the price-taker assumption isn't an accurate reflection of the dynamics of a small market. As such, one approach which was devised was the limit the maximum regulation enablement for each DUID to 10MW. This outcome of this approach can be seen in Figure \ref{fig:coop_limit}. 
 \begin{figure}[H]
     \centering
     \makebox[\textwidth][c]{    \includegraphics[width=\textwidth]{"Pictures/Chapter6/monthly_10MW_perfectenablement".pdf}}
-    \caption{Caption}
-    \label{fig:my_label}
+    \caption{Perfect  Enablement limited to 10MW Regulation Capacity, Energy  \&  FCAS  Revenue  for  a  30MW/119 MWh  Battery  -  South Australia 2018}
+    \label{fig:coop_limit}
 \end{figure}
-
 \subsection{ Validation of Existing Asset Performance  }
+In Figures \ref{fig:perfectenablement} and \ref{fig:coop_limit} using 30MW/119MWh was no co-incidence and was employed to compare to the actual revenue of the merchant component of the Hornsdale Power Reserve. Figure \ref{fig:hpr_actual} is the actual monthly revenue across energy and regulation markets.
 \begin{figure}[H]
     \centering
     \makebox[\textwidth][c]{    \includegraphics[width=\textwidth]{"Pictures/Chapter5/Hornsdale Actual Monthly Energy & FCAS Revenue - South Australia 2018".pdf}}
-    \caption{Caption}
-    \label{fig:my_label}
+    \caption{Hornsdale Actual Monthly Energy & FCAS Revenue - South Australia 2018}
+    \label{fig:hpr_actual}
 \end{figure}
+Comparing the simulated vs actual, Figure \ref{fig:coop_limit} does yield higher overall revenue than Figure \ref{fig:hpr_actual}. This is attributable to that fact that Figure \ref{fig:coop_limit} still maintains perfect foresight of price. Irrespective, the overall shape of the revenue distribution by month is very similar. 

@@ -1,4 +1,5 @@
 \chapter{ Utility Battery Energy Storage - Energy Arbitrage Only}
+\label{sec:energy_arbitrage}
 In the most elementary form, energy arbitrage entails charging when the wholesale spot price is low, and discharging when the wholesale price is high. Whilst conceptually simple, the purchase price of a battery is high, and there are physical limitations on charge/discharge and the frequency of high spot prices is relatively infrequent.
 \section{ Algorithm and Software Selection }
 \parencite{McConnell} used COIN-OR Linear Program solver to find the optimal dispatch for a battery performing energy arbitrage. Linear programming is one of the most common optimisation techniques. Leonard Kantrovich was awarded the 1975 Nobel Price in Economics for the optimal allocation of resources using linear programming \parencite{PythonPulp}. Examples of problems that can be solved by linear programming include:
@@ -13,6 +14,7 @@ PuLP is a suitable tool to perform LP in this thesis for the following reasons:
     \item PuLP works entirely within the syntax of Python and represents optimisation problems and decision variables in  a way that is very similar to the original mathematical expression. 
     \item PuLP is available under a permissive open-source license that encourages and facilitates the use of PuLP inside other projects that need linear optimisation capabilities.
 \end{itemize}
+\newpage
 \section{ Methodology }
 The following algorithm represents the methodology for optimising energy arbitrate in a deterministic model with perfect foresight of energy prices over the optimisation window.
 \begin{align*}
@@ -53,7 +55,7 @@ To implement this algorithm, the following methodology was undertaken;
         \item Formulate the Constraints
     \end{enumerate}
 \end{enumerate}
-It is crucial to note that the energy arbitrage only model assumes the battery is a price-taker,and has perfect foresight of price.
+It is crucial to note that the energy arbitrage only model assumes the battery is a price-taker, and has perfect foresight of price.
 \section{ Analysis }
 \subsection{ Method Validation }
 As shown in Figure \ref{fig:simple_output}, the dispatch logic charging during low prices, and discharging during high prices is effective. Note in Figure \ref{fig:simple_output} a single trip efficiency of 90\% or round trip efficiency of 81\% is implemented. This is a conservative measure, with Tesla stating their Power Pack round trip efficiency is 88\% \url{https://www.tesla.com/en_AU/powerpack}. 
@@ -70,7 +72,7 @@ In order to validate the model, \parencite{Wang} provides energy arbitrage reven
     \caption{Energy Arbitrage - Geographic and Temporal Comparison (Wang 2016)}
     \label{fig:wang_ea}
 \end{figure}
-Below, Figure \ref{fig:wang_ea_comparion} is the implementation of the python model replicating Wang's results. 
+Below, Figure \ref{fig:wang_ea_comparion} is the implementation of the python (pyBess) model replicating Wang's results. 
 \begin{figure}[H]
     \centering
     \makebox[\textwidth][c]{    \includegraphics[width=1\textwidth]{"Pictures/Chapter3/ae_wang_comparison".pdf}}
@@ -164,6 +166,7 @@ price by state for 12 January 2017 (Wood, 2018)}
     \label{fig:generator_gaming_1}
 \end{figure}
 \section{ Performance under a Changing Generation Mix}
+\label{generation_mix}
 Section \ref{sec:trends} highlights the historic trends and emphasises that South Australia is the best performing state for energy arbitrage in the NEM. South Australia has undergone rapid energy transformation over the past 10 years, with exit of coal generators in 2016 \parencite{sa_coal}, uptake of variable renewable energy resources and an increase of behind-the-meter household photovoltaics (PV). AEMO estimates behind-the-meter PV in South Australia currently accounts for 930MW. Additionally, AEMO cites this rapid uptake in behind-the-meter PV combined with energy efficiency savings, kept annual operational consumption in South Australia flat at 12,203 GWh in 2017-18, despite underlying population growth. 
 \newline
 \newline
@@ -174,7 +177,7 @@ AEMO now forecasts minimum operational demand in South Australia because low ope
     \caption{Caption}
     \label{fig:minimum_demand}
 \end{figure}
-As of July 2017, \textcite{sa_aemo} calculated the nameplate capacity of committed capacity new build utility Solar PV in South Australia as 218 MW; Bungala Two (110 MW) and Tailem Bend Solar Farm (108 MW). However, AEMO also acknowledge an additional 2387.5 MW of Solar PV proposed for the state. Structurally this will have a profound impact of prices during the day exacerbating and already pronounced `duck curve' \footnote{In many energy markets the peak demand occurs after sunset, when solar power is no longer available. In locations where a substantial amount of solar electric capacity has been installed, the amount of power that must be generated from sources other than solar or wind displays a rapid increase around sunset and peaks in the mid-evening hours, producing a graph that resembles the silhouette of a duck}. The following methodology has been undertaken to explore the possible impact that significant additional utility PV will have on South Australia. This method is limited to a narrow scope of additional Solar PV and does not take into account increased investment in Wind, thermal generation technologies or uptake in energy efficiency. Additionally, increased demand in the state or exploration of exploration of the proposed SA - NSW interconnector has not been investigated. 
+As of July 2017, \textcite{sa_aemo} calculated the nameplate capacity of committed capacity new build utility Solar PV in South Australia as 218 MW; Bungala Two (110 MW) and Tailem Bend Solar Farm (108 MW). However, AEMO also acknowledge an additional 2387.5 MW of Solar PV proposed for the state. Structurally this will have a profound impact of prices during the day exacerbating and already pronounced `duck curve' \footnote{In many energy markets the peak demand occurs after sunset, when solar power is no longer available. In locations where a substantial amount of solar electric capacity has been installed, the amount of power that must be generated from sources other than solar or wind displays a rapid increase around sunset and peaks in the mid-evening hours, producing a graph that resembles the silhouette of a duck}. The following methodology has been undertaken to explore the possible impact that significant additional utility PV will have on South Australia. This method is limited to a narrow scope of additional Solar PV and does not take into account increased investment in Wind, thermal generation technologies or uptake in energy efficiency. Additionally, increased demand in the state or exploration of the proposed SA - NSW interconnector has not been investigated. 
 \subsection{ Methodology }
 The following steps were undertaken to build 3 scenarios of 30 minute spot prices for South Australia in 2020; a) Business as Usual with no Solar (counterfactual), b) South Australia with an additional 500 MW of Solar c) South Australia with an additional 1000 MW of Solar.
 \newline
@@ -219,4 +222,4 @@ Figure \ref{fig:bess_w_solar} shows the annual revenue assuming perfect foresigh
 From Figure \ref{fig:bess_w_solar} an increase in solar clearly degrades the overall arbitrage by up to 20\% in the 1000 MW scenario. Although additional Solar increases the prevalence of negative pricing during the day, which enables more lucrative and flexible charging regimes, overall demand drive price spikes reduce in magnitude hence reducing overall revenue.
 \newline
 \newline
-This method is only a simple representation of a complex market which is characterised from many physical and economic factors, however this purpose of this section is to illustrate that a evolving generation mix will affect BESS arbitrage revenue, especially in areas where variable intermittent set the marginal clearing price. To explore this in more detail a bottom up approach would offer more insights. In 2018, AEMO released the inaugural Integrated System Plan (ISP) – a comprehensive evaluation of the likely changes that will be occurring over the next 20 years across the National Electricity Market (NEM). Accompanying the ISP is a database which provides a methodology for simulating the NEM over the next 20 years: \url{https://www.aemo.com.au/Electricity/National-Electricity-Market-NEM/Planning-and-forecasting/Integrated-System-Plan/ISP-database}. 
+This method is only a simple representation of a complex market which is characterised from many physical and economic factors, however this purpose of this section is to illustrate that a evolving generation mix will affect BESS arbitrage revenue, especially in areas where variable intermittent set the marginal clearing price. To explore this in more detail a bottom up approach would offer more insight. In 2018, AEMO released the inaugural Integrated System Plan (ISP) – a comprehensive evaluation of the likely changes that will be occurring over the next 20 years across the National Electricity Market (NEM). Accompanying the ISP is a database which provides a methodology for simulating the NEM over the next 20 years: \url{https://www.aemo.com.au/Electricity/National-Electricity-Market-NEM/Planning-and-forecasting/Integrated-System-Plan/ISP-database}. 
